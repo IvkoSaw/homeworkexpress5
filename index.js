@@ -13,19 +13,20 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 
 app.get('/', function (req,res) {
-
     if(req.cookies.user && req.cookies.userPass){
         var userName = req.cookies.user;
-        var userNameStr = JSON.stringify(userName);
-        userNameStr = userNameStr.substring(1,userNameStr.length-1);
+        var userNameStr = JSON.stringify(userName);//without this userName = undefined;
+        userNameStr = userNameStr.substring(1,userNameStr.length-1);//without this userNameStr = "Ivan"
         res.send('Привет, '+userNameStr);
-    }else{res.redirect('http://localhost:3000/signUp')}
+    }else{
+        res.redirect('http://localhost:3000/signUp')
+    }
 })
 
 app.get('/signup', function (req,res) {
     res.render('indexUp');
 });
-
+//server validation
 app.post('/signUp', function (req, res) {
     var name = req.body.name;
     var email = req.body.email;

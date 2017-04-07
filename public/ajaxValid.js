@@ -39,7 +39,7 @@ $(function(){
             $('label[for="password"]').addClass("control-label");
             isPass = false;
         }else{isPass = true;}
-        if (password != rePassword || rePassword == "") {
+        if (password != rePassword || rePassword == "" || isPass == false) {
             $('.divRepass').addClass('has-error');
             $('label[for="rePassword"]').addClass("control-label");
             isRepass = false;
